@@ -12,7 +12,7 @@ const getRandomName = (min, max) =>
 
 let myNumber = getRandomName(1, 20);
 
-const getMessage = (message) => (message.textContent = message);
+const getMessage = (msg) => (message.textContent = msg);
 
 const decreaseScore = () =>
   score.textContent < 1
