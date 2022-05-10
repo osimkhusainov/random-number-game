@@ -7,11 +7,11 @@ const numberScreen = document.querySelector(".number");
 const btnAgain = document.querySelector(".btn.again");
 const highscore = document.querySelector(".highscore");
 
-const getRandomName = (min, max) => {
-  return Math.trunc(Math.random() * (max - min + 1) + min);
-};
+const getRandomName = (min, max) =>
+  Math.trunc(Math.random() * (max - min + 1) + min);
+
 let myNumber = getRandomName(1, 20);
-console.log(myNumber);
+
 const decreaseScore = () =>
   score.textContent < 1
     ? (message.textContent = "You lose! Try again")
@@ -32,11 +32,10 @@ checkBtn.addEventListener("click", () => {
       ? (highscore.textContent = score.textContent)
       : highscore.textContent;
     myNumber = getRandomName(1, 20);
-  } else if (input < myNumber) {
-    message.textContent = "Too low!";
-    decreaseScore();
-  } else if (input > myNumber) {
-    message.textContent = "Too high!";
+  } else {
+    input < myNumber
+      ? (message.textContent = "Too low!")
+      : (message.textContent = "Too high!");
     decreaseScore();
   }
 });
