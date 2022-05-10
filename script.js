@@ -12,19 +12,20 @@ const getRandomName = (min, max) =>
 
 let myNumber = getRandomName(1, 20);
 
+const getMessage = (message) => (message.textContent = message);
+
 const decreaseScore = () =>
   score.textContent < 1
-    ? (message.textContent = "You lose! Try again")
+    ? getMessage("You lose! Try again")
     : score.textContent--;
 
 checkBtn.addEventListener("click", () => {
   const input = +numInput.value;
   if (!input) {
-    message.textContent = "Enter number";
+    getMessage("Enter number");
     decreaseScore();
-    console.log(message.textContent);
   } else if (input === myNumber) {
-    message.textContent = "You won!";
+    getMessage("You won!");
     document.querySelector("body").style.backgroundColor = "green";
     numberScreen.textContent = myNumber;
     numInput.disabled = checkBtn.disabled = true;
@@ -33,18 +34,15 @@ checkBtn.addEventListener("click", () => {
       : highscore.textContent;
     myNumber = getRandomName(1, 20);
   } else {
-    input < myNumber
-      ? (message.textContent = "Too low!")
-      : (message.textContent = "Too high!");
+    input < myNumber ? getMessage("Too low!") : getMessage("Too high!");
     decreaseScore();
   }
 });
 
 btnAgain.addEventListener("click", () => {
   numberScreen.textContent = "?";
-  numInput.disabled = false;
-  checkBtn.disabled = false;
-  message.textContent = "Start guessing...";
+  numInput.disabled = checkBtn.disabled = false;
+  getMessage("Start guessing...");
   document.querySelector("body").style.backgroundColor = "";
   score.textContent = 20;
   numInput.value = "";
